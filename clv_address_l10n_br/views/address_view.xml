@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_address_view_form_l10n_br" model="ir.ui.view">
+        <field name="name">clv.address.form</field>
+        <field name="model">clv.address</field>
+        <field name="priority">99</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
+        <field name="arch" type="xml">
+            <field name="street2" position="replace">
+                <field name="street2" placeholder="District..." class="o_address_street"
+                    attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="district" placeholder="District..." class="o_address_street"
+                    attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" invisible="1"/>
+            </field>
+            <field name="city" position="replace">
+                <field name="city" invisible="1"/>
+                <field name="city_id" placeholder="City" class="o_address_city" options="{'no_open': True, 'no_quick_create': True}"/>
+            </field>
+            <field name="zip" position="after">
+                <button name="zip_search" type="object" class="btn-sm btn-link mb4 fa fa-search oe_edit_only" aria-label="Pesquisar CEP" title="Pesquisar CEP"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_address_view_search_l10n_br" model="ir.ui.view">
+        <field name="name">clv.address.filter</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_search"/>
+        <field name="arch" type="xml">
+            <field name="entity_code" position="after">
+                <field name="city_id"/>
+                <field name="street2"/>
+                <field name="street_name"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_city_id" string="City" context="{'group_by': 'city_id'}"/>
+                <filter name="group_by_district" string="District" context="{'group_by': 'street2'}"/>
+                <filter name="group_by_street_name" string="Street" context="{'group_by': 'street_name'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
