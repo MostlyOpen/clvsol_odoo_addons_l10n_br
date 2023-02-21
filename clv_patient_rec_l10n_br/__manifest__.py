@@ -5,7 +5,7 @@
 {
     'name': 'Patient (Rec) - Brazilian Localization',
     'summary': 'Patient (Rec) Module - Brazilian Localization.',
-    'version': '15.0.6.0',
+    'version': '15.0.6.1',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
